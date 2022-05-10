@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.composelibrary.TempView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,9 +17,8 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val textView = TextView(requireContext())
-        textView.text = "Login Fragment"
-        return textView
+        val view = TempView(requireContext())
+        return view.getRootView()
     }
 
 }

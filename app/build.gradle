@@ -89,4 +89,6 @@ dependencies {
 
     // FragNav
     implementation 'com.ncapdevi:frag-nav:3.3.0'
+
+    implementation project(":compose-library")
 }
