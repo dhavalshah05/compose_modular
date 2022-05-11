@@ -9,10 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,25 +31,26 @@ class TempView(
         return ComposeView(context).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                TempView()
+                val someValue = remember { mutableStateOf(true) }
+                TempView(someValue = someValue.value) {
+                    someValue.value = !someValue.value
+                }
             }
         }
     }
 }
 
 @Composable
-private fun TempView() {
+private fun TempView(
+    someValue: Boolean,
+    onButtonClick: () -> Unit
+) {
 
     val width = remember { mutableStateOf(IntSize.Zero) }
-    val someValue = remember { mutableStateOf(true) }
 
-    LaunchedEffect(key1 = someValue.value, block = {
-        println("Inside Launched Effect")
-        while (true) {
-            println("Timer: ${System.currentTimeMillis()}")
-            delay(1000)
-        }
-    })
+    SideEffect {
+        println("Side Effect ${someValue} = ${System.currentTimeMillis()}")
+    }
 
     Box(
         modifier = Modifier
@@ -80,15 +78,15 @@ private fun TempView() {
                         println("Position Window = ${it.positionInWindow().x}, ${it.positionInWindow().y}")
                     }
             )
-            Button(onClick = { someValue.value = !someValue.value }) {
+            Button(onClick = onButtonClick) {
                 Text(text = "Click Me")
             }
         }
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun TempViewPreview() {
-    TempView()
+    TempView(someValue = false) {}
 }
