@@ -84,9 +84,9 @@ fun AddShopTextField(
                 modifier = Modifier.background(Color.White, shape = CircleShape)
             ) {
                 Icon(
-                   imageVector = Icons.Default.Add,
-                   contentDescription = "Add Icon",
-                   tint = Color.Red,
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add Icon",
+                    tint = Color.Red,
                 )
             }
         }
