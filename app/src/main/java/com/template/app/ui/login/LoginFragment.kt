@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.composelibrary.bringfocus.AuthView
+import com.example.composelibrary.tabs.TabView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +17,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = AuthView(requireContext())
+        val view = TabView(requireContext())
         return view.getRootView()
     }
 
