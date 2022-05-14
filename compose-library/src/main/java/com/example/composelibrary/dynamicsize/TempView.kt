@@ -1,4 +1,4 @@
-package com.example.composelibrary
+package com.example.composelibrary.dynamicsize
 
 import android.content.Context
 import android.view.View
