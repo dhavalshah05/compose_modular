@@ -16,6 +16,9 @@ class MainActivity : NavigatorActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val bs = MainBottomSheet()
+        bs.show(supportFragmentManager, "ABC")
     }
 
     override fun getNavigationHostFragmentId(): Int {
