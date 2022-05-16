@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import com.example.composelibrary.CustomTheme
 
 class TabView(
     private val context: Context
@@ -12,7 +13,9 @@ class TabView(
         return ComposeView(context).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                CustomTabs()
+                CustomTheme {
+                    CustomTabs()
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.example.composelibrary.LocalCustomColors
 
 @Preview
 @Composable
@@ -37,14 +38,14 @@ fun CustomTabs() {
         ScrollableTabRow(
             modifier = Modifier.wrapContentWidth(),
             selectedTabIndex = selectedTabIndex.value,
-            contentColor = Color.Red.copy(alpha = 0.5f),
+            contentColor = Color.Red,
             edgePadding = 0.dp,
             tabs = {
                 for (i in 0..10) {
                     Tab(
                         selected = i == selectedTabIndex.value,
                         onClick = { selectedTabIndex.value = i },
-                        selectedContentColor = Color.Cyan,
+                        selectedContentColor = LocalCustomColors.current.textColor,
                         unselectedContentColor = Color.White,
                     ) {
                         Text("Tab Item", modifier = Modifier.padding(vertical = 12.dp))
