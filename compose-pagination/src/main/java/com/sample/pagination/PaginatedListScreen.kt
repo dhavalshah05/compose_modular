@@ -22,11 +22,17 @@ private fun PreviewPaginatedList() {
     PaginatedList(items = emptyList(), onLoadMore = {})
 }
 
+internal data class PaginatedListState(
+    val lazyListState: LazyListState,
+    val isLoading: Boolean,
+    val page: Int
+)
+
 @Composable
-private fun rememberPaginatedLazyListState(
+internal fun rememberPaginatedListState(
     itemsCount: Int,
     onLoadMore: (page: Int) -> Unit,
-): LazyListState {
+): PaginatedListState {
     val onLoadMoreLatest = rememberUpdatedState(newValue = onLoadMore)
     val state = rememberLazyListState()
 
@@ -45,6 +51,7 @@ private fun rememberPaginatedLazyListState(
     if (itemsCount != 0) {
         LaunchedEffect(
             key1 = state.firstVisibleItemIndex,
+            key2 = itemsCount,
             block = {
                 val totalItemsCount = state.layoutInfo.totalItemsCount
                 val lastVisibleItemPosition = state.layoutInfo.visibleItemsInfo.last().index
@@ -67,15 +74,17 @@ private fun rememberPaginatedLazyListState(
         LaunchedEffect(
             key1 = Unit,
             block = {
-                loadingState.value = false
                 previousItemsCountState.value = 0
                 page.value = 1
+                loadingState.value = true
                 onLoadMoreLatest.value.invoke(page.value)
             }
         )
     }
 
-    return state
+    return remember(state, loadingState.value, page.value) {
+        PaginatedListState(lazyListState = state, isLoading = loadingState.value, page.value)
+    }
 }
 
 @Composable
@@ -84,13 +93,13 @@ internal fun PaginatedList(
     onLoadMore: (page: Int) -> Unit
 ) {
     
-    val state = rememberPaginatedLazyListState(itemsCount = items.size, onLoadMore = onLoadMore)
+    val state = rememberPaginatedListState(itemsCount = items.size, onLoadMore = onLoadMore)
     
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
-        state = state
+        state = state.lazyListState
     ) {
         items(items = items) {
             ListItem(it)
