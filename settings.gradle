@@ -1,6 +1,5 @@
 rootProject.name = "compose_modular"
 include ':app'
-include ':compose-library'
 include ':compose-tabs'
 include ':compose-focus'
 include ':compose-bottom-sheet'
