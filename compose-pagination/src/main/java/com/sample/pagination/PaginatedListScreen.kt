@@ -30,7 +30,6 @@ internal data class PaginatedListState(
 
 @Composable
 internal fun rememberPaginatedListState(
-    itemsCount: Int,
     onLoadMore: (page: Int) -> Unit,
 ): PaginatedListState {
     val onLoadMoreLatest = rememberUpdatedState(newValue = onLoadMore)
@@ -48,10 +47,10 @@ internal fun rememberPaginatedListState(
     }
     // endregion States for loading more data
 
-    if (itemsCount != 0) {
+    if (state.layoutInfo.visibleItemsInfo.isNotEmpty()) {
         LaunchedEffect(
             key1 = state.firstVisibleItemIndex,
-            key2 = itemsCount,
+            key2 = state.layoutInfo.visibleItemsInfo.size,
             block = {
                 val totalItemsCount = state.layoutInfo.totalItemsCount
                 val lastVisibleItemPosition = if (state.layoutInfo.visibleItemsInfo.isEmpty()) 0 else state.layoutInfo.visibleItemsInfo.last().index
@@ -93,7 +92,7 @@ internal fun PaginatedList(
     onLoadMore: (page: Int) -> Unit
 ) {
     
-    val state = rememberPaginatedListState(itemsCount = items.size, onLoadMore = onLoadMore)
+    val state = rememberPaginatedListState(onLoadMore = onLoadMore)
     
     LazyColumn(
         modifier = Modifier
