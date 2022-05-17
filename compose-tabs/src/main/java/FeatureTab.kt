@@ -1,5 +1,3 @@
-package com.example.composelibrary.tabs
-
 sealed class FeatureTab {
     abstract val title: String
     abstract val hasData: Boolean
