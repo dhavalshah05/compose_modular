@@ -32,6 +32,8 @@ class PaginatedListView(
     }
 
     private fun loadMore(page: Int) {
+        //if (page > 1) return
+
         GlobalScope.launch {
             println("debug_pagination = Loading data of page $page")
             delay(2000)

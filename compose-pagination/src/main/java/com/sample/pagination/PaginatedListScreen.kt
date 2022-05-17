@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 @Preview
 @Composable
 private fun PreviewPaginatedList() {
-    PaginatedList(items = emptyList(), onLoadMore = {})
+    PaginatedList(items = listOf(1, 2, 3), onLoadMore = {})
 }
 
 internal data class PaginatedListState(
@@ -54,7 +54,7 @@ internal fun rememberPaginatedListState(
             key2 = itemsCount,
             block = {
                 val totalItemsCount = state.layoutInfo.totalItemsCount
-                val lastVisibleItemPosition = state.layoutInfo.visibleItemsInfo.last().index
+                val lastVisibleItemPosition = if (state.layoutInfo.visibleItemsInfo.isEmpty()) 0 else state.layoutInfo.visibleItemsInfo.last().index
 
                 if (loadingState.value && totalItemsCount > previousItemsCountState.value) {
                     loadingState.value = false
@@ -111,7 +111,7 @@ internal fun PaginatedList(
 private fun ListItem(id: Int, modifier: Modifier = Modifier) {
     val backgroundColor = if (id % 2 == 0) Color.White else Color.Gray.copy(alpha = 0.3F)
     Text(
-        text = "Item $id",
+        text = "Item is $id",
         fontSize = 18.sp,
         color = Color.Black,
         modifier = modifier
