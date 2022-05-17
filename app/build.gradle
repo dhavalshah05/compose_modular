@@ -92,4 +92,5 @@ dependencies {
 
     implementation project(":compose-library")
     implementation project(":compose-tabs")
+    implementation project(":compose-focus")
 }

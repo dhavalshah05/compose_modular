@@ -1,5 +1,6 @@
 package com.template.app.ui.login
 
+import AuthView
 import TabView
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +17,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = TabView(requireContext())
+        val view = AuthView(requireContext())
         return view.getRootView()
     }
 
