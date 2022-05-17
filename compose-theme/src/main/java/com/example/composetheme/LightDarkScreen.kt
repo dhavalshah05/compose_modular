@@ -14,7 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 private fun PreviewLightDarkScreen() {
-    LightDarkScreen {}
+    CustomTheme(isDarkTheme = false) {
+        LightDarkScreen {}
+    }
 }
 
 @Composable
