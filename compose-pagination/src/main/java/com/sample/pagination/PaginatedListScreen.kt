@@ -24,40 +24,56 @@ private fun PreviewPaginatedList() {
 @Composable
 internal fun PaginatedList(
     items: List<Int>,
-    onLoadMore: () -> Unit
+    onLoadMore: (page: Int) -> Unit
 ) {
+    val onLoadMoreLatest = rememberUpdatedState(newValue = onLoadMore)
     val state = rememberLazyListState()
 
+    // region States for loading more data
     val loadingState = remember {
         mutableStateOf(false)
     }
     val previousItemsCountState = remember {
         mutableStateOf(0)
     }
+    val page = remember {
+        mutableStateOf(1)
+    }
+    // endregion States for loading more data
 
-    val onLoadMoreLatest = rememberUpdatedState(newValue = onLoadMore)
 
-    LaunchedEffect(
-        key1 = state.firstVisibleItemIndex,
-        block = {
-            val totalItemsCount = state.layoutInfo.totalItemsCount
-            val lastVisibleItemPosition = state.layoutInfo.visibleItemsInfo.last().index
+    if (items.isNotEmpty()) {
+        LaunchedEffect(
+            key1 = state.firstVisibleItemIndex,
+            block = {
+                val totalItemsCount = state.layoutInfo.totalItemsCount
+                val lastVisibleItemPosition = state.layoutInfo.visibleItemsInfo.last().index
 
-            if (loadingState.value && totalItemsCount > previousItemsCountState.value) {
-                println("debug_pagination = updating loading state to false")
+                if (loadingState.value && totalItemsCount > previousItemsCountState.value) {
+                    loadingState.value = false
+                    previousItemsCountState.value = totalItemsCount
+                }
+
+                if (!loadingState.value && lastVisibleItemPosition + 5 > totalItemsCount) {
+                    val nextPage = page.value.plus(1)
+                    page.value = nextPage
+                    onLoadMoreLatest.value.invoke(nextPage)
+                    loadingState.value = true
+                    previousItemsCountState.value = totalItemsCount
+                }
+            }
+        )
+    } else {
+        LaunchedEffect(
+            key1 = Unit,
+            block = {
                 loadingState.value = false
-                previousItemsCountState.value = totalItemsCount
+                previousItemsCountState.value = 0
+                page.value = 1
+                onLoadMoreLatest.value.invoke(page.value)
             }
-
-            if (!loadingState.value && lastVisibleItemPosition + 5 > totalItemsCount) {
-                println("debug_pagination = Load More ${System.currentTimeMillis()}")
-                loadingState.value = true
-                previousItemsCountState.value = totalItemsCount
-                onLoadMoreLatest.value.invoke()
-            }
-
-        }
-    )
+        )
+    }
 
     LazyColumn(
         modifier = Modifier

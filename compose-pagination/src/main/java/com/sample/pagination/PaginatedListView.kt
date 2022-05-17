@@ -15,7 +15,7 @@ class PaginatedListView(
     private val context: Context
 ) {
 
-    private val items = mutableStateOf(getData())
+    private val items = mutableStateOf<List<Int>>(emptyList())
 
     fun getRootView(): View {
         return ComposeView(context).apply {
@@ -23,19 +23,20 @@ class PaginatedListView(
             setContent {
                 PaginatedList(
                     items = items.value,
-                    onLoadMore = {
-                        loadMore()
+                    onLoadMore = { page ->
+                        loadMore(page)
                     }
                 )
             }
         }
     }
 
-    private fun loadMore() {
+    private fun loadMore(page: Int) {
         GlobalScope.launch {
+            println("debug_pagination = Loading data of page $page")
             delay(2000)
             val newItems = mutableListOf<Int>()
-            newItems.addAll(getData())
+            newItems.addAll(items.value)
             newItems.addAll(getData())
             items.value = newItems.toList()
         }
