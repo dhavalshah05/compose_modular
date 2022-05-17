@@ -1,5 +1,3 @@
-package com.example.composelibrary.sheets.modalbottomsheet
-
 import android.content.Context
 import android.view.View
 import androidx.compose.foundation.background

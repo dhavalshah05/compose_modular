@@ -1,5 +1,3 @@
-package com.example.composelibrary.sheets.modalbottomsheet
-
 /*
  * Copyright 2021 Chris Banes
  *
@@ -58,7 +56,7 @@ import kotlin.math.floor
  * ```
  */
 @Composable
-fun rememberViewInteropNestedScrollConnection(
+internal fun rememberViewInteropNestedScrollConnection(
     view: View = LocalView.current
 ): NestedScrollConnection = remember(view) {
     ViewInteropNestedScrollConnection(view)

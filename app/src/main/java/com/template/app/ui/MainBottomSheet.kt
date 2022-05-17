@@ -1,11 +1,11 @@
 package com.template.app.ui
 
+import MainBottomSheetView
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.composelibrary.sheets.modalbottomsheet.MainBottomSheetView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MainBottomSheet : BottomSheetDialogFragment() {
