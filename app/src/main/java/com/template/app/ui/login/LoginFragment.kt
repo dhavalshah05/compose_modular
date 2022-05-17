@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.composetheme.LightDarkView
+import com.sample.pagination.PaginatedListView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +19,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = LightDarkView(requireContext())
+        val view = PaginatedListView(requireContext())
         return view.getRootView()
     }
 

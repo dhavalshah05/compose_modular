@@ -94,4 +94,5 @@ dependencies {
     implementation project(":compose-focus")
     implementation project(":compose-bottom-sheet")
     implementation project(":compose-theme")
+    implementation project(":compose-pagination")
 }
