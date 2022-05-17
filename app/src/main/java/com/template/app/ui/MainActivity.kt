@@ -17,8 +17,8 @@ class MainActivity : NavigatorActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bs = MainBottomSheet()
-        bs.show(supportFragmentManager, "ABC")
+        //val bs = MainBottomSheet()
+        //bs.show(supportFragmentManager, "ABC")
     }
 
     override fun getNavigationHostFragmentId(): Int {
