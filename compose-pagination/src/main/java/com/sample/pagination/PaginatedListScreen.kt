@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Text
@@ -22,10 +23,10 @@ private fun PreviewPaginatedList() {
 }
 
 @Composable
-internal fun PaginatedList(
-    items: List<Int>,
-    onLoadMore: (page: Int) -> Unit
-) {
+private fun rememberPaginatedLazyListState(
+    itemsCount: Int,
+    onLoadMore: (page: Int) -> Unit,
+): LazyListState {
     val onLoadMoreLatest = rememberUpdatedState(newValue = onLoadMore)
     val state = rememberLazyListState()
 
@@ -41,8 +42,7 @@ internal fun PaginatedList(
     }
     // endregion States for loading more data
 
-
-    if (items.isNotEmpty()) {
+    if (itemsCount != 0) {
         LaunchedEffect(
             key1 = state.firstVisibleItemIndex,
             block = {
@@ -75,6 +75,17 @@ internal fun PaginatedList(
         )
     }
 
+    return state
+}
+
+@Composable
+internal fun PaginatedList(
+    items: List<Int>,
+    onLoadMore: (page: Int) -> Unit
+) {
+    
+    val state = rememberPaginatedLazyListState(itemsCount = items.size, onLoadMore = onLoadMore)
+    
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
