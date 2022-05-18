@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,6 +52,15 @@ private fun InfiniteAnimationScreen() {
         )
     )
 
+    val border = infiniteTransition.animateFloat(
+        initialValue = 0.dp.value,
+        targetValue = 50.dp.value,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 500, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+    
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -61,7 +71,7 @@ private fun InfiniteAnimationScreen() {
         Box(
             modifier = Modifier
                 .size(100.dp)
-                .background(color.value, CircleShape),
+                .background(Color.Black, RoundedCornerShape(border.value.dp)),
         ) {
 
         }
