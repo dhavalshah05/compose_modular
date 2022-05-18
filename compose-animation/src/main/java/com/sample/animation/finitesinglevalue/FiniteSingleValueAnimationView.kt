@@ -3,6 +3,7 @@ package com.sample.animation.finitesinglevalue
 import android.content.Context
 import android.view.View
 import androidx.compose.animation.animateColor
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -58,7 +59,10 @@ private fun FiniteSingleValueAnimationScreen() {
         val startAnimation = remember {
             mutableStateOf(false)
         }
-        val alpha = animateFloatAsState(if (startAnimation.value) 1f else 0.2f, animationSpec = tween(durationMillis = 300))
+
+        val alpha = animateFloatAsState(if (startAnimation.value) 1f else 0.2f, animationSpec = tween(durationMillis = 1000))
+        val color = animateColorAsState(targetValue = if (startAnimation.value) Color.Black else Color.Red, animationSpec = tween(durationMillis = 1000))
+        val size = animateDpAsState(targetValue = if (startAnimation.value) 200.dp else 100.dp, animationSpec = tween(durationMillis = 1000))
 
         Button(
             onClick = { startAnimation.value = !startAnimation.value },
@@ -68,9 +72,9 @@ private fun FiniteSingleValueAnimationScreen() {
 
         Box(
             modifier = Modifier
-                .size(100.dp)
+                .size(size = size.value)
                 .alpha(alpha = alpha.value)
-                .background(Color.Black),
+                .background(color = color.value),
         ) {
 
         }
