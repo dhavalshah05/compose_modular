@@ -95,4 +95,5 @@ dependencies {
     implementation project(":compose-bottom-sheet")
     implementation project(":compose-theme")
     implementation project(":compose-pagination")
+    implementation project(":compose-animation")
 }

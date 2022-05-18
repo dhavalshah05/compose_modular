@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.composetheme.LightDarkView
+import com.sample.animation.infinite.InfiniteAnimationView
 import com.sample.pagination.PaginatedListView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +20,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = PaginatedListView(requireContext())
+        val view = InfiniteAnimationView(requireContext())
         return view.getRootView()
     }
 
