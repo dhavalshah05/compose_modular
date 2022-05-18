@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.composetheme.LightDarkView
+import com.sample.animation.finitemultiplevalues.FiniteMultipleValuesAnimationView
 import com.sample.animation.finitesinglevalue.FiniteSingleValueAnimationView
 import com.sample.animation.infinite.InfiniteAnimationView
 import com.sample.pagination.PaginatedListView
@@ -21,7 +22,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = FiniteSingleValueAnimationView(requireContext())
+        val view = FiniteMultipleValuesAnimationView(requireContext())
         return view.getRootView()
     }
 
