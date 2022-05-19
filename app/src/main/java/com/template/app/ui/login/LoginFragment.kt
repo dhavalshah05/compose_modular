@@ -12,6 +12,7 @@ import com.sample.animation.finitemultiplevalues.FiniteMultipleValuesAnimationVi
 import com.sample.animation.finitesinglevalue.FiniteSingleValueAnimationView
 import com.sample.animation.infinite.InfiniteAnimationView
 import com.sample.pagination.PaginatedListView
+import com.sample.ripple.RippleView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +23,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = FiniteMultipleValuesAnimationView(requireContext())
+        val view = RippleView(requireContext())
         return view.getRootView()
     }
 

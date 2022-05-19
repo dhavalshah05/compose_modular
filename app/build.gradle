@@ -96,4 +96,5 @@ dependencies {
     implementation project(":compose-theme")
     implementation project(":compose-pagination")
     implementation project(":compose-animation")
+    implementation project(":compose-ripple")
 }
