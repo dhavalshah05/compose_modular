@@ -12,6 +12,7 @@ import com.sample.androidview.ComposeAndroidView
 import com.sample.animation.finitemultiplevalues.FiniteMultipleValuesAnimationView
 import com.sample.animation.finitesinglevalue.FiniteSingleValueAnimationView
 import com.sample.animation.infinite.InfiniteAnimationView
+import com.sample.grid.horizontal.HorizontalGridView
 import com.sample.grid.vertical.VerticalGridView
 import com.sample.pagination.PaginatedListView
 import com.sample.ripple.RippleView
@@ -25,7 +26,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = VerticalGridView(requireContext())
+        val view = HorizontalGridView(requireContext())
         return view.getRootView()
     }
 
