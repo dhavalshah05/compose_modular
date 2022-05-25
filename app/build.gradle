@@ -98,4 +98,5 @@ dependencies {
     implementation project(":compose-animation")
     implementation project(":compose-ripple")
     implementation project(":compose-android-view")
+    implementation project(":compose-grid")
 }
