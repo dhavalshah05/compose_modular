@@ -1,12 +1,11 @@
 package com.sample.grid.vertical
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.GridItemSpan
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +18,6 @@ private fun PreviewVerticalGridScreen() {
     VerticalGridScreen()
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun VerticalGridScreen(
     modifier: Modifier = Modifier
@@ -28,7 +26,7 @@ internal fun VerticalGridScreen(
 
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
-        cells = GridCells.Fixed(3),
+        columns = GridCells.Fixed(3),
         horizontalArrangement = Arrangement.spacedBy(spacing),
         verticalArrangement = Arrangement.spacedBy(spacing),
         contentPadding = PaddingValues(spacing),
@@ -36,9 +34,9 @@ internal fun VerticalGridScreen(
             items(40) { index ->
                 VGridItem(color = getColor(index + 1))
             }
-            /*item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+            item(span = { GridItemSpan(maxCurrentLineSpan) }) {
                 VGridItem(color = Color.Yellow)
-            }*/
+            }
         }
     )
 }
