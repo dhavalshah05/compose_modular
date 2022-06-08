@@ -14,7 +14,7 @@ buildscript {
         // in the individual module build.gradle files
     }
     ext {
-        compose_version = '1.2.0-beta02'
+        compose_version = '1.2.0-beta03'
         compose_activity_version = '1.4.0'
     }
 }
