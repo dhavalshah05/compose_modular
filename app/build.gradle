@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk compile_sdk_version
 
     defaultConfig {
         applicationId "com.composemodular.app"
