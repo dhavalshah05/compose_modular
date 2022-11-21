@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = HorizontalGridView(requireContext())
+        val view = VerticalGridView(requireContext())
         return view.getRootView()
     }
 
